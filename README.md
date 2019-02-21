@@ -28,20 +28,46 @@ After listening to her ideas, I then shared my ideas. We discussed and ranked ou
 
 Solution
 -
-I decided to create a GitHub webpage to display money-saving tips based on starting and ending boroughs. I decided this because a webpage is easy for a customer such as my research candidate to use. I have created one GitHub webpage in the past, so this was relatively, but not completely, new. 
+My first idea was to create a GitHub webpage to display money-saving tips based on starting and ending boroughs. This idea was quickly quickly put to a halt as I realized GitHub Pages have to be static sites. I then looked into the many data science opportunities available with Python, and decided to make a Python-coded web app. I have never made a web app, but have some Python experience, so I began with the familiar: writing a Python file with the logic of converting from Borough to LocationID, and vice versa, while writing unit tests in a separate file and testing in Jupyter as I went. My beginning data set contained four files: the zone/borough breakdown, and the Jan 2019 yellow, green, and for-hire files. The for-hire file gave me some trouble, as it was too big to download as a single csv file, so I kept it as the maximum csv file size, which goes up until Jan 20; 8490755 pieces of data, while not covering as great of a range of dates, provides an adequate representation of data points :). 
+As I tested methods and waited for them to finish running, I concurrently began the web app. As this was new ground for me, I completed research of Django and Flask (two popular choices online). I decided on a Flask framework because it was simpler, and I did not need advanced functionality.  After some time spent beginning a non-functional web app, I went back to the drawing board and decided to create a simpler command line argument program.
 
+I eventually had a program working that took in [-y] to filter yellow data, [-g] to filter green data, and [-f] to filter for-hire data. I moved on to add code to filter by time, then lastly code to filter by borough. This functionality became easier as I coded more, because I learned how to process the arguments. By the time I got to the borough filter, I created a method that could be used with all data sets. I could have written more concise code if I would have created methods for every one of these filters.
 
 Testing
 -
+Test_Equations.py contains self tests for methods used within Calculations.py
 
+I created mock data files of ~5 rows each so that I was able to mark myself whether the correct data was filtered within my tests. These are titled mock_fhv_data.csv, mock_green_data.csv, and mock_yellow_data.csv,
 
+Due to a limitation of time, I was not able to address every program limitation that I encountered.
+
+Known errors/limitations:
+-Must enter known, correctly-spelled names as starting and ending boroughs
+-Date and time must be in correct format and within the Python library's limitation of valid times and dates
+-Time zone is in given time zone with no opportunity to switch to other time zones
 
 Directions to use
 -
+Run on the command line
+[-y] [-g] [-f]
+These tags show to represent data from the yellow taxis [-y], green taxis [-g], and for-hire vehicles [-f]. Results from [-y] will be stored in filtered_yellow_data.csv, results from [-g] will be stored in filtered_green_data.csv, and results from [-f] will be stored in filtered_fhv_data.csv. The program must be run with at least one of these tags.
 
+[--start DATE TIME]
+[--end DATE TIME]
+These tags filter the pickup time data, with [--start] representing the beginning range window and [--end] representing the ending range window. Each requires being followed by a date in the format YEAR-MM-DD HH:MM:SS. These tags are optional and can be used separately, eg. [--start] without [--end].
 
+[--sborough BOROUGH]
+[--eborough BOROUGH]
+These tags filter the ride's starting and ending boroughs. The starting borough [--sborough] must be followed by a Borough Name and the ending borough [-eborough] must be followed by a Borough Name, as well. These tags are optional and can be used separately, eg. [--sborough] without [--eborough].
+
+Example of all tags used combined on command line, with sample data:
+python NYCTaxi.py -y -g -f --start 2018-01-01 00:21:04 --end 2018-01-01 00:21:06 --sborough Dog --eborough Dog
 
 Project limitations
 -
-One limitation was the data available. There was not too much information available for for-hire, including even prices, so my comparisons do not adequately cover all facets of every option. Another limitation is in my market research. My research that helped to dictate my priorities only covered one rider’s experience on one ride in particular, which is clearly not representative of all taxi and for-hire rides in NYC. If I had more time, I would interview a variety of people about rides at different types of each day, using different methods. 
+One limitation (as well as advantage for analyzation purposes) was the huge amount of data and the time it took my laptop to run all this data. As my inital tests were taking very long to run each, I created mock data files to save time testing. I decided to not import data past Jan 2019, which is only representative of one month (and only 20 days in the case of for-hire).
+
+Another limitation is in my market research. My research that helped to dictate my priorities only covered one rider’s experience on one ride in particular, which is clearly not representative of all taxi and for-hire rides in NYC. If I had more time, I would interview a variety of people about rides at different types of each day, using different methods. 
+
+Time was ultimately the most major limitation. As this was the first Python command line project that I have created, I spent time researching every library and function used. I realized by the end that I spent too long researching possible features (and, in some cases, writing beginning code) which are ultimately less important than documenting and testing basic functionality.
 
