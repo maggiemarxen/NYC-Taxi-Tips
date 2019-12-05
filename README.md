@@ -44,9 +44,12 @@ Known errors/limitations:
 -Must enter known, correctly-spelled names as starting and ending boroughs
 -Date and time must be in correct format and within the Python library's limitation of valid times and dates
 -Time zone is in given time zone with no opportunity to switch to other time zones
+-At the time the command is run, to-be-modified csv files cannot be open, or there will be a PermissionError
 
 Directions to use
 -
+Download Python and NumPy. The Anaconda Platform, which includes both, is recommended-- as well as the Anaconda Powershell Prompt.
+
 Run on the command line using python NYCTaxi.py (then arguments)
 Due to struggling taking too long testing the big data files, my project currently uses smaller mock data files (mock_zones.csv, mock_fhv_data.csv, mock_green_data.csv, and mock_yellow_data.csv) which are hard-coded into the beginning of NYCTaxi.py, and for testing you may need to check that the paths line up on your computer.
 
